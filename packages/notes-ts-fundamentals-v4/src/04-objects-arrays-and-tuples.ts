@@ -6,27 +6,34 @@ let car: {
   year: number
 }
 
-/*
+
 //? A function that prints info about a car to stdout
-// function printCar(car: {
-//     make: string
-//     model: string
-//     year: number
-// }) {
-//     console.log(`${car.make} ${car.model} (${car.year})`)
-// }
+function printCar(car: {
+    make: string
+    model: string
+    year: number,
+    chargeVoltage?: number
+}) {
+    
 
-// printCar(car)
+    //? Insert into function printCar
+    let str = `${car.make} ${car.model} (${car.year})`
+    car.chargeVoltage
 
-/*
+    // type guard
+    if (typeof car.chargeVoltage === "number")
+        str += `// ${car.chargeVoltage}v`
+
+    console.log(str)
+}
+
+car = {make: "Toyota", model: "A", year: 2000}
+
+printCar(car)
+
+
 //* Optional properties
-//? Insert into function printCar
-// let str = `${car.make} ${car.model} (${car.year})`
-// car.chargeVoltage
-// if (typeof car.chargeVoltage !== "undefined")
-//   str += `// ${car.chargeVoltage}v`
 
-/*
 // printCar({ //? original fn works
 //     make: "Honda",
 //     model: "Accord",
@@ -40,7 +47,6 @@ let car: {
 //     chargeVoltage: 220,
 // })
 
-/*
 //* Excess property checking
 
 // printCar({
@@ -50,24 +56,30 @@ let car: {
 //     color: "RED", //? EXTRA PROPERTY
 // })
 
-/*
+
 //* Index signatures
 
 //? Dictionary of phone #s
-// const phones = {
-//     home: { country: "+1", area: "211", number: "652-4515" },
-//     work: { country: "+1", area: "670", number: "752-5856" },
-//     fax: { country: "+1", area: "322", number: "525-4357" },
-// }
-/*
+
 //? Model as an index signature
-// const phones: {
-//     [k: string]: {
-//         country: string
-//         area: string
-//         number: string
-//     }
-// } = {}
+
+// Error that mobile is missing in the assigned object value.
+const phones: {
+    mobile: {
+        country: string
+        area: string
+        number: string
+    },
+    [k: string]: {
+        country: string
+        area: string
+        number: string
+    }
+} = {
+    home: { country: "+1", area: "211", number: "652-4515" },
+    work: { country: "+1", area: "670", number: "752-5856" },
+    fax: { country: "+1", area: "322", number: "525-4357" },
+}
 
 //*  Array Types
 
